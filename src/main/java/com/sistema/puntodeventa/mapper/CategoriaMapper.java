@@ -2,18 +2,28 @@ package com.sistema.puntodeventa.mapper;
 
 import com.sistema.puntodeventa.dto.CategoriaDTO;
 import com.sistema.puntodeventa.model.Categoria;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
+import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+@Component
+public class CategoriaMapper {
 
-@Mapper(componentModel = "spring")
-public interface CategoriaMapper {
+    public CategoriaDTO toDTO(Categoria categoria) {
+        CategoriaDTO dto = new CategoriaDTO();
+        dto.setId(categoria.getIdCategoria());
+        dto.setNombre(categoria.getNombre());
+        dto.setDescripcion(categoria.getDescripcion());
+        dto.setActivo(categoria.getActivo());
+        dto.setFechaCreacion(categoria.getFechaCreacion());
+        return dto;
+    }
 
-    CategoriaDTO toDto(Categoria categoria);
-
-
-    Categoria toEntity(CategoriaDTO categoriaDTO);
+    public Categoria toEntity(CategoriaDTO dto) {
+        Categoria categoria = new Categoria();
+        categoria.setIdCategoria(dto.getId());
+        categoria.setNombre(dto.getNombre());
+        categoria.setDescripcion(dto.getDescripcion());
+        categoria.setActivo(dto.isActivo());
+        categoria.setFechaCreacion(dto.getFechaCreacion());
+        return categoria;
+    }
 }

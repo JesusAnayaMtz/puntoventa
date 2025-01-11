@@ -7,10 +7,13 @@ import java.util.List;
 
 public interface ICategoriaService {
 
-    CategoriaDTO guardarCategora(CategoriaDTO categoriaDTO);
+    CategoriaDTO guardarCategoria(CategoriaDTO categoriaDTO);
+
     List<CategoriaDTO> listarCategorias();
 
     CategoriaDTO obtenerCategoriaPorId(Long id);
 
-    String desactivarCAtegoria(Long id);
+    void desactivarCategoria(Long id);
+
+    CategoriaDTO actualizarCategoria(Long id, CategoriaDTO categoriaDTO);
 }

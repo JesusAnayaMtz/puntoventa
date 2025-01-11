@@ -1,11 +1,13 @@
-package com.sistema.puntodeventa;
+package com.sistema.puntodeventa.repository;
 
 import com.sistema.puntodeventa.model.Categoria;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Repository
 public interface CategoriaRepository  extends JpaRepository<Categoria, Long> {
 
-    Optional<Categoria> findbyNombre(String nombre);
+    Optional<Categoria> findCategoriaByNombre(String nombre);
 }
