@@ -1,27 +1,21 @@
-package com.sistema.puntodeventa.model;
+package com.sistema.puntodeventa.dto;
 
+import com.sistema.puntodeventa.model.Categoria;
+import com.sistema.puntodeventa.model.UnidadVenta;
 import jakarta.persistence.*;
-import jdk.jfr.Enabled;
 
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "productos")
-public class Producto {
+public class ProductoDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String descripcion;
-
     private int claveSat;
 
-    private UnidadVenta unidadVenta;
+    private Long idCategoria;
 
-    @ManyToOne
-    @JoinColumn(name = "categoria_id_categoria")
-    private Categoria categoria;
+    private UnidadVenta unidadVenta;
 
     private int stock;
     private int stockMax;
@@ -36,29 +30,9 @@ public class Producto {
 
     private boolean activo = true;
 
-    public Producto() {
+    public ProductoDTO() {
     }
 
-    @PrePersist
-    public void prePersist() {
-        this.fechaCreacion = LocalDate.now();
-    }
-
-    public Producto(Long id, String descripcion, int claveSat, UnidadVenta unidadVenta, Categoria categoria, int stock, int stockMax, int stockMin, LocalDate fechaCreacion, LocalDate fechaModificacion, double precio, String imagen, boolean activo) {
-        this.id = id;
-        this.descripcion = descripcion;
-        this.claveSat = claveSat;
-        this.unidadVenta = unidadVenta;
-        this.categoria = categoria;
-        this.stock = stock;
-        this.stockMax = stockMax;
-        this.stockMin = stockMin;
-        this.fechaCreacion = fechaCreacion;
-        this.fechaModificacion = fechaModificacion;
-        this.precio = precio;
-        this.imagen = imagen;
-        this.activo = activo;
-    }
 
     public Long getId() {
         return id;
@@ -84,12 +58,20 @@ public class Producto {
         this.claveSat = claveSat;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
+    public Long getIdCategoria() {
+        return idCategoria;
     }
 
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
+    public void setIdCategoria(Long idCategoria) {
+        this.idCategoria = idCategoria;
+    }
+
+    public UnidadVenta getUnidadVenta() {
+        return unidadVenta;
+    }
+
+    public void setUnidadVenta(UnidadVenta unidadVenta) {
+        this.unidadVenta = unidadVenta;
     }
 
     public int getStock() {
@@ -121,7 +103,7 @@ public class Producto {
     }
 
     public void setFechaCreacion(LocalDate fechaCreacion) {
-        this.fechaCreacion = LocalDate.now();
+        this.fechaCreacion = fechaCreacion;
     }
 
     public LocalDate getFechaModificacion() {
