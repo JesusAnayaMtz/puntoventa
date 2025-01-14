@@ -92,6 +92,14 @@ public class Producto {
         this.categoria = categoria;
     }
 
+    public UnidadVenta getUnidadVenta() {
+        return unidadVenta;
+    }
+
+    public void setUnidadVenta(UnidadVenta unidadVenta) {
+        this.unidadVenta = unidadVenta;
+    }
+
     public int getStock() {
         return stock;
     }
